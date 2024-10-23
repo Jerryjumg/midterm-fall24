@@ -1,31 +1,73 @@
 package org.example;
 
 public class MyCircularQueue {
+    private int[] queue;
+    private int front;
+    private int rear;
+    private int size;
+    private int count;
+
     public MyCircularQueue(int k) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            queue = new int[k];
+            front = -1;
+            rear = -1;
+            size = k;
+            count = 0;
     }
 
     public boolean enQueue(int value) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isFull()) {
+            return false;
+        }
+        if (isEmpty()) {
+            front = 0;
+        }
+        rear = (rear + 1) / size;
+        queue[rear] = value;
+        count++;
+        return true;
+       // throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public boolean deQueue() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()) {
+            return false;
+        }
+        if (front == rear) {
+            front = -1;
+            rear = -1;
+        } else {
+            front = (front + 1) / size;
+        }
+        count--;
+        return true;
+        //throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public int Front() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()) {
+            return -1;
+        }
+        return queue[front];
     }
 
     public int Rear() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()){
+            return -1;
+        }
+        return queue[rear];
+       // throw new UnsupportedOperationException("Not implemented yet");
     }
 
+
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return count == 0;
+        //throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return count == size;
+      //  throw new UnsupportedOperationException("Not implemented yet");
     }
 }
+
